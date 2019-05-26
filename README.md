@@ -9,7 +9,7 @@
 ```
 $ git clone https://github.com/itrms/examples.git
 $ cd examples/website
-$ sh run.sh
+$ sh test.sh
 ```
 
 更多请参考 `examples` 中的示例
