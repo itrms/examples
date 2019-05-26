@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mq01:
+    image: rabbitmq:3.7.14-management-alpine
+    network_mode: 'host'
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=cookie_secret_123
+      - RABBITMQ_HIPE_COMPILE=1
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=password
+      - RABBITMQ_VM_MEMORY_HIGH_WATERMARK=0.1
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '${PWD}/enabled_plugins:/etc/rabbitmq/enabled_plugins'
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15672:15672"
+      - "15674:15674"
+      - "15675:15675"
+      - "25672:25672"
+      - "1883:1883"
+      - "61613:61613"

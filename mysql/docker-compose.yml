@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  master:
+    image: mariadb:10.3.14
+    network_mode: 'host'
+    restart: always
+    environment:
+      TIMEZONE: Asis/Shanghai
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+    ports:
+      - '3306:3306'
+    volumes:
+      - '/etc/timezone:/etc/timezone:ro'
+      - '${PWD}/initdb.d:/docker-entrypoint-initdb.d:ro'
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_bin
+      - --log-bin=mysql-bin
+      - --server-id=1
+      - --expire_logs_days=10
